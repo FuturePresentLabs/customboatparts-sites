@@ -3,15 +3,78 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
-    {{ with .Site.Params.description }}<meta name="description" content="{{ . }}" />{{ end }}
+
+    <title>
+      {{- if .IsHome -}}
+        {{- .Site.Title -}}
+      {{- else -}}
+        {{- .Title -}} · {{- .Site.Title -}}
+      {{- end -}}
+    </title>
+
+    {{- $desc := .Site.Params.description | default "Premium custom marine parts, fast quotes, and reliable fulfillment." -}}
+    <meta name="description" content="{{ $desc }}" />
+
+    {{- with .Permalink -}}<link rel="canonical" href="{{ . }}" />{{- end -}}
+
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+    <meta property="og:description" content="{{ $desc }}" />
+    <meta property="og:type" content="website" />
+    {{- with .Permalink -}}<meta property="og:url" content="{{ . }}" />{{- end -}}
+    {{- with .Site.Params.heroImage -}}<meta property="og:image" content="{{ . | absURL }}" />{{- end -}}
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="{{ "/favicon.svg" | relURL }}" type="image/svg+xml" />
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}" />
   </head>
   <body>
-    <main class="wrap">
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="topbar">
+      <div class="topbarInner">
+        <a class="brand" href="{{ "/" | relURL }}">
+          <span class="brandMark" aria-hidden="true">⚓</span>
+          <span class="brandText">{{ .Site.Title }}</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="#offerings">Parts</a>
+          <a href="#how">How it works</a>
+          <a href="#materials">Materials</a>
+          <a href="#faq">FAQ</a>
+          <a class="navCta" href="#contact">Request a quote</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap" id="main">
       {{ block "main" . }}{{ end }}
+
       <footer class="footer">
-        <p>© {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+        <div class="footerGrid">
+          <div>
+            <div class="footerTitle">{{ .Site.Title }}</div>
+            <p class="footerText">{{ $desc }}</p>
+          </div>
+
+          <div>
+            <div class="footerTitle">Get a quote</div>
+            {{ $email := .Site.Params.contactEmail | default "CONTACT_EMAIL" }}
+            <p class="footerText">
+              <a href="mailto:{{ $email }}?subject={{ (.Site.Params.primarySubject | default "Quote request") | urlquery }}">{{ $email }}</a>
+            </p>
+          </div>
+
+          <div>
+            <div class="footerTitle">Notes</div>
+            <p class="footerText">{{ .Site.Params.footerNote | default "Send photos, measurements, quantity, and where the part lives on the boat." }}</p>
+          </div>
+        </div>
+
+        <div class="footerBottom">
+          <p>© {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+        </div>
       </footer>
     </main>
   </body>

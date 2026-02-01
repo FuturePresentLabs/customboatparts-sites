@@ -16,6 +16,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
   # TODO: replace CONTACT_EMAIL with the real inbox for this business.
   contactEmail = "CONTACT_EMAIL"
 
+  # Temporary: funnel to Quotron (we'll replace with the proper branded flow later)
+  quoteUrl = "https://quote.fpl.dev/?utm_source=floridacustomerboatparts.com&utm_medium=landing&utm_campaign=boatparts"
+
+  footerNote = "To get a fast quote: include photos, measurements, quantity, and where the part mounts." 
+
   showBadge = false
 
   heroImage = "/img/hero-florida-wide.png"
