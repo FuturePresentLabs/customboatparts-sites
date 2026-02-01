@@ -7,6 +7,11 @@ Monorepo containing two Hugo landing sites:
 
 Shared theme lives in `themes/landing`.
 
+## TODO
+
+- Set the real contact email (replace `CONTACT_EMAIL` in each site config).
+- Decide hosting per site (Netlify/Vercel/S3+CloudFront/etc.) and wire each domain to the correct build output.
+
 ## Local dev
 
 ```bash
