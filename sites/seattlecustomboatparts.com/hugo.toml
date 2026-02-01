@@ -1,0 +1,31 @@
+baseURL = "https://seattlecustomboatparts.com/"
+languageCode = "en-us"
+title = "seattlecustomboatparts.com"
+
+theme = "landing"
+themesDir = "../../themes"
+
+enableRobotsTXT = true
+
+disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+
+[params]
+  kicker = "Custom Boat Parts"
+  description = "Precision parts, fast quotes, and reliable fulfillment."
+  primaryCtaText = "Request a Quote"
+  primaryCtaUrl = "mailto:info@seattlecustomboatparts.com?subject=Quote%20request"
+  secondaryCtaText = "Email"
+  secondaryCtaUrl = "mailto:info@seattlecustomboatparts.com"
+  note = "Tell us what you need and we’ll reply with availability + lead time."
+
+  [[params.features]]
+    title = "Fast quotes"
+    body = "Send a part number, sketch, or photo—get a quick turnaround quote."
+  [[params.features]]
+    title = "Small runs welcome"
+    body = "Prototypes and short runs are fine—no huge MOQ required."
+  [[params.features]]
+    title = "Marine-ready materials"
+    body = "Common alloys and corrosion-resistant options."
+
+  disclaimer = "This is a new site. If you have an urgent request, email us and include your boat make/model and any measurements."
