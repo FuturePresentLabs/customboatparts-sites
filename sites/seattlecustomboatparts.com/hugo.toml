@@ -1,6 +1,6 @@
 baseURL = "https://seattlecustomboatparts.com/"
 languageCode = "en-us"
-title = "seattlecustomboatparts.com"
+title = "Seattle Custom Boat Parts"
 
 theme = "landing"
 themesDir = "../../themes"
@@ -10,22 +10,26 @@ enableRobotsTXT = true
 disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
 
 [params]
-  kicker = "Custom Boat Parts"
-  description = "Precision parts, fast quotes, and reliable fulfillment."
+  kicker = "Seattle / PNW"
+  description = "Custom marine parts and small-run fabrication for the Pacific Northwest. Fast quotes, practical materials, reliable lead times."
+
+  # TODO: replace CONTACT_EMAIL with the real inbox for this business.
+  contactEmail = "CONTACT_EMAIL"
+
   primaryCtaText = "Request a Quote"
-  primaryCtaUrl = "mailto:info@seattlecustomboatparts.com?subject=Quote%20request"
+  primarySubject = "Seattle quote request"
   secondaryCtaText = "Email"
-  secondaryCtaUrl = "mailto:info@seattlecustomboatparts.com"
-  note = "Tell us what you need and we’ll reply with availability + lead time."
+
+  note = "Send a photo/sketch or part number + dimensions. We’ll reply with options and lead time."
 
   [[params.features]]
-    title = "Fast quotes"
-    body = "Send a part number, sketch, or photo—get a quick turnaround quote."
+    title = "Fast turnaround"
+    body = "Quick quotes and clear timelines—ideal for repairs, upgrades, and refits."
   [[params.features]]
-    title = "Small runs welcome"
-    body = "Prototypes and short runs are fine—no huge MOQ required."
+    title = "Prototypes + small runs"
+    body = "One-offs and short runs welcome. We'll keep it simple and build what you need."
   [[params.features]]
-    title = "Marine-ready materials"
-    body = "Common alloys and corrosion-resistant options."
+    title = "Practical materials"
+    body = "Marine-friendly options with a focus on durability and real-world fit." 
 
-  disclaimer = "This is a new site. If you have an urgent request, email us and include your boat make/model and any measurements."
+  disclaimer = "New site in progress. For urgent requests, email with boat make/model, photos, and measurements."

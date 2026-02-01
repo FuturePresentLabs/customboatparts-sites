@@ -4,13 +4,10 @@
     <h1>{{ .Site.Title }}</h1>
     <p class="lead">{{ .Site.Params.description | default "Precision parts, fast quotes, and reliable fulfillment." }}</p>
 
+    {{ $email := .Site.Params.contactEmail | default "CONTACT_EMAIL" }}
     <div class="ctaRow">
-      {{ with .Site.Params.primaryCtaUrl }}
-        <a class="btn btnPrimary" href="{{ . }}">{{ $.Site.Params.primaryCtaText | default "Request a Quote" }}</a>
-      {{ end }}
-      {{ with .Site.Params.secondaryCtaUrl }}
-        <a class="btn btnSecondary" href="{{ . }}">{{ $.Site.Params.secondaryCtaText | default "Email Us" }}</a>
-      {{ end }}
+      <a class="btn btnPrimary" href="mailto:{{ $email }}?subject={{ (.Site.Params.primarySubject | default "Quote request") | urlquery }}">{{ .Site.Params.primaryCtaText | default "Request a Quote" }}</a>
+      <a class="btn btnSecondary" href="mailto:{{ $email }}">{{ .Site.Params.secondaryCtaText | default "Email" }}</a>
     </div>
 
     {{ with .Site.Params.note }}

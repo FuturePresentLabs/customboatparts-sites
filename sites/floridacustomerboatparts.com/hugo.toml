@@ -1,6 +1,6 @@
 baseURL = "https://floridacustomerboatparts.com/"
 languageCode = "en-us"
-title = "floridacustomerboatparts.com"
+title = "Florida Custom Boat Parts"
 
 theme = "landing"
 themesDir = "../../themes"
@@ -10,22 +10,26 @@ enableRobotsTXT = true
 disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
 
 [params]
-  kicker = "Custom Boat Parts"
-  description = "Precision parts, fast quotes, and reliable fulfillment."
+  kicker = "Florida / Gulf + Atlantic"
+  description = "Custom marine parts with corrosion-resistant material options—built for salt air, heat, and hard use. Fast quotes and straightforward lead times."
+
+  # TODO: replace CONTACT_EMAIL with the real inbox for this business.
+  contactEmail = "CONTACT_EMAIL"
+
   primaryCtaText = "Request a Quote"
-  primaryCtaUrl = "mailto:info@floridacustomerboatparts.com?subject=Quote%20request"
+  primarySubject = "Florida quote request"
   secondaryCtaText = "Email"
-  secondaryCtaUrl = "mailto:info@floridacustomerboatparts.com"
-  note = "Tell us what you need and we’ll reply with availability + lead time."
+
+  note = "Email photos/sketches, measurements, and quantity. We’ll confirm materials and lead time."
 
   [[params.features]]
-    title = "Fast quotes"
-    body = "Send a part number, sketch, or photo—get a quick turnaround quote."
+    title = "Corrosion-resistant options"
+    body = "Material choices geared for saltwater environments and long service life."
   [[params.features]]
-    title = "Small runs welcome"
-    body = "Prototypes and short runs are fine—no huge MOQ required."
+    title = "Repair + replacement"
+    body = "Replace broken hardware, brackets, mounts, and custom fittings with minimal fuss."
   [[params.features]]
-    title = "Marine-ready materials"
-    body = "Common alloys and corrosion-resistant options."
+    title = "Clear lead times"
+    body = "Upfront timelines and quick communication so you can plan the next trip." 
 
-  disclaimer = "This is a new site. If you have an urgent request, email us and include your boat make/model and any measurements."
+  disclaimer = "New site in progress. For urgent requests, email with boat make/model, photos, and measurements."
