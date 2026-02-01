@@ -75,6 +75,23 @@
   </section>
   {{ end }}
 
+  {{ with .Site.Params.photos }}
+  <section class="section" id="photos">
+    <div class="sectionHead">
+      <h2>{{ $.Site.Params.photosTitle | default "On the water" }}</h2>
+      <p>{{ $.Site.Params.photosIntro | default "A few frames that match the work." }}</p>
+    </div>
+    <div class="photoStrip">
+      {{ range . }}
+        <figure class="photo">
+          <img src="{{ .src | relURL }}" alt="{{ .alt }}" loading="lazy" />
+          {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+        </figure>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
   {{ with .Site.Params.materials }}
   <section class="section" id="materials">
     <div class="sectionHead">
