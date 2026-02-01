@@ -16,6 +16,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
   # TODO: replace CONTACT_EMAIL with the real inbox for this business.
   contactEmail = "CONTACT_EMAIL"
 
+  heroImage = "/img/hero-seattle.jpg"
+
   primaryCtaText = "Request a Quote"
   primarySubject = "Seattle quote request"
   secondaryCtaText = "Email"
