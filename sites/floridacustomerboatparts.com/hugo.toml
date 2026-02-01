@@ -11,7 +11,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
 
 [params]
   kicker = "Florida / Gulf + Atlantic"
-  description = "Custom marine parts with corrosion-resistant material options—built for salt air, heat, and hard use. Fast quotes and straightforward lead times."
+  description = "Premium custom marine parts built for Florida salt air and heat—corrosion-resistant material options, fast quotes, and straightforward lead times."
 
   # TODO: replace CONTACT_EMAIL with the real inbox for this business.
   contactEmail = "CONTACT_EMAIL"
@@ -20,16 +20,80 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
   primarySubject = "Florida quote request"
   secondaryCtaText = "Email"
 
-  note = "Email photos/sketches, measurements, and quantity. We’ll confirm materials and lead time."
+  note = "Send photos/sketches, measurements, quantity, and where the part lives on the boat. We’ll confirm materials + lead time."
+  trustLine = "Corrosion-first materials · Clean finishes · Made-to-order"
 
-  [[params.features]]
-    title = "Corrosion-resistant options"
-    body = "Material choices geared for saltwater environments and long service life."
-  [[params.features]]
-    title = "Repair + replacement"
-    body = "Replace broken hardware, brackets, mounts, and custom fittings with minimal fuss."
-  [[params.features]]
-    title = "Clear lead times"
-    body = "Upfront timelines and quick communication so you can plan the next trip." 
+  offeringsIntro = "Common parts we build and replace for boats that live in the sun and salt." 
+  [[params.offerings]]
+    title = "Hardware replacements"
+    body = "Replace corroded mounts, brackets, tabs, and fittings with upgraded materials."
+  [[params.offerings]]
+    title = "Custom brackets"
+    body = "Electronics, pumps, accessories—built to fit, resist vibration, and survive the environment."
+  [[params.offerings]]
+    title = "Marine fittings"
+    body = "Adapters, plates, spacers, and custom interfaces—designed for serviceability and longevity."
+
+  processIntro = "Fast, clear, and efficient." 
+  [[params.process]]
+    n = "1"
+    title = "Send details"
+    body = "Photos, measurements, quantity, and any mating surfaces. CAD is great but not required."
+  [[params.process]]
+    n = "2"
+    title = "Pick premium materials"
+    body = "We’ll recommend corrosion-resistant alloys/finishes suitable for Florida salt, heat, and UV exposure."
+  [[params.process]]
+    n = "3"
+    title = "Build + deliver"
+    body = "Clean workmanship, realistic lead times, and a part you won’t have to babysit." 
+
+  materialsIntro = "We prioritize premium, corrosion-resistant options—because Florida will punish cheap metal." 
+  materialsTitle = "Alloys we like"
+  [[params.materials]]
+    name = "316 stainless"
+    note = "Best all-around choice for exposed saltwater hardware and fittings."
+  [[params.materials]]
+    name = "Duplex stainless (when warranted)"
+    note = "For higher strength/corrosion needs in especially aggressive environments."
+  [[params.materials]]
+    name = "Naval bronze"
+    note = "Classic marine metal—strong, corrosion-resistant, and looks right on a boat."
+
+  finishTitle = "Finishes + details"
+  [[params.finishes]]
+    name = "Passivation"
+    note = "Improves stainless corrosion performance after machining."
+  [[params.finishes]]
+    name = "Anodize + coatings"
+    note = "When aluminum makes sense, we’ll spec durable finishes for wear and salt." 
+  [[params.finishes]]
+    name = "Galvanic isolation"
+    note = "We’ll call out dissimilar-metal risks and suggest isolation where appropriate."
+
+  leadTimesIntro = "Ballpark ranges—final depends on complexity and material availability." 
+  [[params.leadTimes]]
+    range = "24–72h"
+    label = "Quote"
+    note = "Faster when you include clear photos + dimensions."
+  [[params.leadTimes]]
+    range = "3–10d"
+    label = "Most parts"
+    note = "Small-run brackets, plates, and upgraded replacements."
+  [[params.leadTimes]]
+    range = "10–21d"
+    label = "Complex builds"
+    note = "Multi-op parts, special finishes, or sourcing premium stock."
+
+  faqIntro = "If you don’t see your question, email us." 
+  [[params.faq]]
+    q = "Do you do corrosion-resistant builds?"
+    a = "Yes—it's the default. We’ll recommend premium alloys and finishes based on where the part lives and what it touches."
+  [[params.faq]]
+    q = "Can you upgrade a part vs copying it?"
+    a = "Often. If the original failed due to corrosion, vibration, or flex, we’ll suggest improvements."
+  [[params.faq]]
+    q = "Do you take small jobs?"
+    a = "Yes. One-offs and small batches are welcome—especially when you want quality materials and clean fit."
 
   disclaimer = "New site in progress. For urgent requests, email with boat make/model, photos, and measurements."

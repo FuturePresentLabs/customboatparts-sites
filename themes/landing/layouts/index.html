@@ -1,28 +1,135 @@
 {{ define "main" }}
   <header class="hero">
-    <p class="kicker">{{ .Site.Params.kicker | default "Custom Boat Parts" }}</p>
-    <h1>{{ .Site.Title }}</h1>
-    <p class="lead">{{ .Site.Params.description | default "Precision parts, fast quotes, and reliable fulfillment." }}</p>
+    <div class="heroInner">
+      <div>
+        <p class="kicker">{{ .Site.Params.kicker | default "Custom Boat Parts" }}</p>
+        <h1 class="title">{{ .Site.Title }}</h1>
+        <p class="lead">{{ .Site.Params.description | default "Premium marine parts, fast quotes, and reliable fulfillment." }}</p>
 
-    {{ $email := .Site.Params.contactEmail | default "CONTACT_EMAIL" }}
-    <div class="ctaRow">
-      <a class="btn btnPrimary" href="mailto:{{ $email }}?subject={{ (.Site.Params.primarySubject | default "Quote request") | urlquery }}">{{ .Site.Params.primaryCtaText | default "Request a Quote" }}</a>
-      <a class="btn btnSecondary" href="mailto:{{ $email }}">{{ .Site.Params.secondaryCtaText | default "Email" }}</a>
+        {{ $email := .Site.Params.contactEmail | default "CONTACT_EMAIL" }}
+        <div class="ctaRow">
+          <a class="btn btnPrimary" href="mailto:{{ $email }}?subject={{ (.Site.Params.primarySubject | default "Quote request") | urlquery }}">{{ .Site.Params.primaryCtaText | default "Request a Quote" }}</a>
+          <a class="btn btnSecondary" href="mailto:{{ $email }}">{{ .Site.Params.secondaryCtaText | default "Email" }}</a>
+        </div>
+
+        {{ with .Site.Params.note }}
+          <p class="note">{{ . }}</p>
+        {{ end }}
+
+        {{ with .Site.Params.trustLine }}
+          <p class="trust">{{ . }}</p>
+        {{ end }}
+      </div>
+
+      <div class="heroBadge" aria-hidden="true">
+        <div class="badgeRing"></div>
+        <div class="badgeText">
+          <div class="badgeTop">Made-to-order</div>
+          <div class="badgeMid">Marine</div>
+          <div class="badgeBot">Hardware</div>
+        </div>
+      </div>
     </div>
-
-    {{ with .Site.Params.note }}
-      <p class="note">{{ . }}</p>
-    {{ end }}
   </header>
 
-  <section class="grid">
-    {{ range .Site.Params.features }}
-      <div class="card">
-        <h3>{{ .title }}</h3>
-        <p>{{ .body }}</p>
-      </div>
-    {{ end }}
+  {{ with .Site.Params.offerings }}
+  <section class="section" id="offerings">
+    <div class="sectionHead">
+      <h2>What we make</h2>
+      <p>{{ $.Site.Params.offeringsIntro | default "Common builds and replacements." }}</p>
+    </div>
+    <div class="grid">
+      {{ range . }}
+        <div class="card">
+          <h3>{{ .title }}</h3>
+          <p>{{ .body }}</p>
+        </div>
+      {{ end }}
+    </div>
   </section>
+  {{ end }}
+
+  {{ with .Site.Params.process }}
+  <section class="section" id="how">
+    <div class="sectionHead">
+      <h2>How quoting works</h2>
+      <p>{{ $.Site.Params.processIntro | default "A simple, fast loop." }}</p>
+    </div>
+    <ol class="steps">
+      {{ range . }}
+        <li class="step">
+          <div class="stepNum">{{ .n }}</div>
+          <div>
+            <h3>{{ .title }}</h3>
+            <p>{{ .body }}</p>
+          </div>
+        </li>
+      {{ end }}
+    </ol>
+  </section>
+  {{ end }}
+
+  {{ with .Site.Params.materials }}
+  <section class="section" id="materials">
+    <div class="sectionHead">
+      <h2>Premium materials</h2>
+      <p>{{ $.Site.Params.materialsIntro | default "Built for salt, sun, and load." }}</p>
+    </div>
+    <div class="twoCol">
+      <div class="panel">
+        <h3>{{ $.Site.Params.materialsTitle | default "Common options" }}</h3>
+        <ul class="list">
+          {{ range . }}
+            <li><strong>{{ .name }}</strong> — {{ .note }}</li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>{{ $.Site.Params.finishTitle | default "Finishes + details" }}</h3>
+        <ul class="list">
+          {{ range $.Site.Params.finishes }}
+            <li><strong>{{ .name }}</strong> — {{ .note }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with .Site.Params.leadTimes }}
+  <section class="section" id="lead">
+    <div class="sectionHead">
+      <h2>Typical lead times</h2>
+      <p>{{ $.Site.Params.leadTimesIntro | default "We’ll confirm after we see your part." }}</p>
+    </div>
+    <div class="three">
+      {{ range . }}
+        <div class="stat">
+          <div class="statBig">{{ .range }}</div>
+          <div class="statLabel">{{ .label }}</div>
+          <div class="statNote">{{ .note }}</div>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with .Site.Params.faq }}
+  <section class="section" id="faq">
+    <div class="sectionHead">
+      <h2>FAQ</h2>
+      <p>{{ $.Site.Params.faqIntro | default "Quick answers to common questions." }}</p>
+    </div>
+    <div class="faq">
+      {{ range . }}
+        <details class="qa">
+          <summary>{{ .q }}</summary>
+          <p>{{ .a }}</p>
+        </details>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
 
   {{ with .Site.Params.disclaimer }}
     <section class="disclaimer">

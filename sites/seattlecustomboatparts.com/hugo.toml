@@ -10,8 +10,8 @@ enableRobotsTXT = true
 disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
 
 [params]
-  kicker = "Seattle / PNW"
-  description = "Custom marine parts and small-run fabrication for the Pacific Northwest. Fast quotes, practical materials, reliable lead times."
+  kicker = "Seattle / Pacific Northwest"
+  description = "Premium custom marine parts and small-run fabrication in the Pacific Northwest—fast quotes, clean fit, dependable lead times."
 
   # TODO: replace CONTACT_EMAIL with the real inbox for this business.
   contactEmail = "CONTACT_EMAIL"
@@ -20,16 +20,80 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
   primarySubject = "Seattle quote request"
   secondaryCtaText = "Email"
 
-  note = "Send a photo/sketch or part number + dimensions. We’ll reply with options and lead time."
+  note = "Send a photo/sketch or part number + dimensions. We’ll respond with material options, pricing, and lead time."
+  trustLine = "Made-to-order · Small runs welcome · Built for salt + load"
 
-  [[params.features]]
-    title = "Fast turnaround"
-    body = "Quick quotes and clear timelines—ideal for repairs, upgrades, and refits."
-  [[params.features]]
-    title = "Prototypes + small runs"
-    body = "One-offs and short runs welcome. We'll keep it simple and build what you need."
-  [[params.features]]
-    title = "Practical materials"
-    body = "Marine-friendly options with a focus on durability and real-world fit." 
+  offeringsIntro = "Common made-to-order parts we can turn quickly."
+  [[params.offerings]]
+    title = "Brackets + mounts"
+    body = "Engine bay, electronics, accessories, pumps—designed to fit the real constraints on your boat."
+  [[params.offerings]]
+    title = "Replacement hardware"
+    body = "When OEM is discontinued or corroded out, we can replicate and improve." 
+  [[params.offerings]]
+    title = "Custom fittings"
+    body = "Adapters, spacers, plates, tabs—built for alignment, stiffness, and serviceability."
+
+  processIntro = "No portal, no nonsense. A tight loop." 
+  [[params.process]]
+    n = "1"
+    title = "Email details"
+    body = "Photos, measurements, quantity, and any must-hit interfaces. CAD files welcome but not required."
+  [[params.process]]
+    n = "2"
+    title = "We propose materials + approach"
+    body = "We’ll recommend premium alloys/finishes for the environment and load—plus alternatives if you want options."
+  [[params.process]]
+    n = "3"
+    title = "Build + ship"
+    body = "Clear lead time, clean workmanship, and communication you can trust." 
+
+  materialsIntro = "We bias toward premium, marine-proven materials—especially for PNW salt + seasonal storage." 
+  materialsTitle = "Alloys we like"
+  [[params.materials]]
+    name = "316 stainless"
+    note = "Excellent saltwater corrosion resistance—great for fasteners, brackets, and exposed hardware."
+  [[params.materials]]
+    name = "Naval bronze"
+    note = "Classic marine choice—strong, corrosion-resistant, and beautiful when finished well."
+  [[params.materials]]
+    name = "Hard-anodized aluminum"
+    note = "Lightweight with a durable finish—ideal when weight matters and geometry is complex."
+
+  finishTitle = "Finishes + details"
+  [[params.finishes]]
+    name = "Passivation"
+    note = "For stainless parts to improve corrosion resistance after machining."
+  [[params.finishes]]
+    name = "Anodize"
+    note = "Type II/III options depending on wear and cosmetic needs."
+  [[params.finishes]]
+    name = "Edge + fit"
+    note = "Deburred edges, clean chamfers, and tolerances appropriate for real marine assembly."
+
+  leadTimesIntro = "Ballpark ranges—final depends on complexity and material availability." 
+  [[params.leadTimes]]
+    range = "24–72h"
+    label = "Quote"
+    note = "Often same-day if you include photos + dimensions."
+  [[params.leadTimes]]
+    range = "3–10d"
+    label = "Most parts"
+    note = "Typical for small-run brackets, plates, and replacement hardware."
+  [[params.leadTimes]]
+    range = "10–21d"
+    label = "Complex builds"
+    note = "Multi-op parts, special finishes, or material sourcing."
+
+  faqIntro = "If you don’t see your question, email us." 
+  [[params.faq]]
+    q = "Do you take one-off jobs?"
+    a = "Yes—one-offs and prototypes are welcome. We’ll advise if a small batch makes more sense for cost or spares."
+  [[params.faq]]
+    q = "Can you match an existing part?"
+    a = "Usually. Send photos and measurements; if you can ship the original for reference, even better."
+  [[params.faq]]
+    q = "Do you do corrosion-resistant builds?"
+    a = "Absolutely. We’ll recommend premium alloys and finishes based on where the part lives and what it touches."
 
   disclaimer = "New site in progress. For urgent requests, email with boat make/model, photos, and measurements."
