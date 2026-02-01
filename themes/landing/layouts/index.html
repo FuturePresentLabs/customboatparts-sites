@@ -1,8 +1,12 @@
 {{ define "main" }}
-  <header class="hero" style="{{ with .Site.Params.heroImage }}--hero-img:url("{{ . | relURL }}");{{ end }}">
-  {{ with .Site.Params.heroImage }}
-    <div class="heroMedia" aria-hidden="true">
-      <img src="{{ . | relURL }}" alt="" loading="lazy"     <div class="heroInner">
+  <header class="hero">
+    {{ with .Site.Params.heroImage }}
+      <div class="heroMedia" aria-hidden="true">
+        <img src="{{ . | relURL }}" alt="" loading="lazy" />
+      </div>
+    {{ end }}
+
+    <div class="heroInner">
       <div>
         <p class="kicker">{{ .Site.Params.kicker | default "Custom Boat Parts" }}</p>
         <h1 class="title">{{ .Site.Title }}</h1>
