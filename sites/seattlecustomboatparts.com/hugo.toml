@@ -99,3 +99,21 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
     a = "Absolutely. We’ll recommend premium alloys and finishes based on where the part lives and what it touches."
 
   disclaimer = "New site in progress. For urgent requests, email with boat make/model, photos, and measurements."
+
+  photosTitle = "On the water"
+  photosIntro = "Pacific Northwest boats, real conditions, real hardware."
+
+  [[params.photos]]
+    src = "/img/seattle-sunset.jpg"
+    alt = "Sailboat at sunset"
+    caption = "Classic PNW evenings—salt air, changing weather, gear that has to hold."
+
+  [[params.photos]]
+    src = "/img/seattle-cockpit.jpg"
+    alt = "Sailboat cockpit detail"
+    caption = "Where parts live: tight spaces, wet hands, vibration, and constant use."
+
+  [[params.photos]]
+    src = "/img/seattle-dory.jpg"
+    alt = "Small wooden boat on calm water"
+    caption = "Premium materials and clean finishes—made to look right and last."

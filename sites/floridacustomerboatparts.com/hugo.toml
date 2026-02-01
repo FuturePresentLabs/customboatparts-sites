@@ -99,3 +99,21 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
     a = "Yes. One-offs and small batches are welcome—especially when you want quality materials and clean fit."
 
   disclaimer = "New site in progress. For urgent requests, email with boat make/model, photos, and measurements."
+
+  photosTitle = "Built for Florida"
+  photosIntro = "Heat, UV, and salt: we spec materials accordingly."
+
+  [[params.photos]]
+    src = "/img/florida-detail-hardware.png"
+    alt = "Premium stainless marine hardware"
+    caption = "Corrosion-first: 316 stainless, proper finishing, and galvanic awareness."
+
+  [[params.photos]]
+    src = "/img/florida-detail-boat.png"
+    alt = "Florida boat detail"
+    caption = "Polished hardware, durable finishes, and parts that fit the first time."
+
+  [[params.photos]]
+    src = "/img/hero-florida.png"
+    alt = "Florida boating scene"
+    caption = "Made-to-order parts for boats that live on the water."
