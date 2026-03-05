@@ -17,9 +17,9 @@
 
     {{- with .Permalink -}}<link rel="canonical" href="{{ . }}" />{{- end -}}
 
-    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+    <meta property="og:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
     <meta property="og:description" content="{{ $desc }}" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type"        content="website" />
     {{- with .Permalink -}}<meta property="og:url" content="{{ . }}" />{{- end -}}
     {{- with .Site.Params.heroImage -}}<meta property="og:image" content="{{ . | absURL }}" />{{- end -}}
 
@@ -39,11 +39,11 @@
         </a>
 
         <nav class="nav" aria-label="Primary">
-          <a href="#offerings">Parts</a>
-          <a href="#how">How it works</a>
+          <a href="#offerings">Capabilities</a>
+          <a href="#how">Process</a>
           <a href="#materials">Materials</a>
           <a href="#faq">FAQ</a>
-          <a class="navCta" href="#contact">Request a quote</a>
+          <a class="navCta" href="#contact">Get a Quote</a>
         </nav>
       </div>
     </header>
@@ -52,23 +52,36 @@
       {{ block "main" . }}{{ end }}
 
       <footer class="footer">
+        {{- $email := .Site.Params.contactEmail | default "CONTACT_EMAIL" -}}
         <div class="footerGrid">
           <div>
-            <div class="footerTitle">{{ .Site.Title }}</div>
+            <div class="footerBrandRow">
+              <span class="brandMark" aria-hidden="true">⚓</span>
+              <span class="footerTitle">{{ .Site.Title }}</span>
+            </div>
             <p class="footerText">{{ $desc }}</p>
           </div>
 
           <div>
-            <div class="footerTitle">Get a quote</div>
-            {{ $email := .Site.Params.contactEmail | default "CONTACT_EMAIL" }}
-            <p class="footerText">
-              <a href="mailto:{{ $email }}?subject={{ (.Site.Params.primarySubject | default "Quote request") | urlquery }}">{{ $email }}</a>
-            </p>
+            <div class="footerTitle">Navigate</div>
+            <nav class="footerNav" aria-label="Footer">
+              <a href="#offerings">Capabilities</a>
+              <a href="#how">How it works</a>
+              <a href="#materials">Materials</a>
+              <a href="#lead">Lead times</a>
+              <a href="#faq">FAQ</a>
+              <a href="#contact">Get a quote</a>
+            </nav>
           </div>
 
           <div>
-            <div class="footerTitle">Notes</div>
-            <p class="footerText">{{ .Site.Params.footerNote | default "Send photos, measurements, quantity, and where the part lives on the boat." }}</p>
+            <div class="footerTitle">Get a quote</div>
+            <p class="footerText">
+              <a href="mailto:{{ $email }}?subject={{ (.Site.Params.primarySubject | default "Quote request") | urlquery }}">{{ $email }}</a>
+            </p>
+            <p class="footerText" style="margin-top:12px">
+              {{ .Site.Params.footerNote | default "Send photos, measurements, quantity, and where the part lives on the boat." }}
+            </p>
           </div>
         </div>
 

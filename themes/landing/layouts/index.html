@@ -1,19 +1,21 @@
 {{ define "main" }}
-  {{ $email := .Site.Params.contactEmail | default "CONTACT_EMAIL" }}
+  {{ $email    := .Site.Params.contactEmail | default "CONTACT_EMAIL" }}
   {{ $quoteUrl := .Site.Params.quoteUrl | default "" }}
 
+  {{/* ── HERO ─────────────────────────────────────── */}}
   <header class="hero">
     {{ with .Site.Params.heroImage }}
       <div class="heroMedia" aria-hidden="true">
-        <img src="{{ . | relURL }}" alt="" loading="eager" />
+        <img src="{{ . | relURL }}" alt="" loading="eager" fetchpriority="high" />
       </div>
     {{ end }}
+    <div class="heroOverlay" aria-hidden="true"></div>
 
     <div class="heroInner">
       <div>
-        <p class="kicker">{{ .Site.Params.kicker | default "Custom Boat Parts" }}</p>
-        <h1 class="title">{{ .Site.Title }}</h1>
-        <p class="lead">{{ .Site.Params.description | default "Premium marine parts, fast quotes, and reliable fulfillment." }}</p>
+        <div class="eyebrow">{{ .Site.Params.kicker | default "Custom Boat Parts" }}</div>
+        <h1 class="heroTitle">{{ .Site.Title }}</h1>
+        <p class="heroLead">{{ .Site.Params.description | default "Premium marine parts, fast quotes, and reliable fulfillment." }}</p>
 
         <div class="ctaRow">
           {{ if $quoteUrl }}
@@ -21,220 +23,259 @@
           {{ else }}
             <a class="btn btnPrimary" href="#contact">{{ .Site.Params.primaryCtaText | default "Request a Quote" }}</a>
           {{ end }}
-          <a class="btn btnSecondary" href="#contact">{{ .Site.Params.secondaryCtaText | default "Email / Details" }}</a>
+          <a class="btn btnSecondary" href="#contact">{{ .Site.Params.secondaryCtaText | default "Send Details" }}</a>
         </div>
 
         {{ with .Site.Params.note }}
-          <p class="note">{{ . }}</p>
+          <p class="heroNote">{{ . }}</p>
         {{ end }}
-
         {{ with .Site.Params.trustLine }}
-          <p class="trust">{{ . }}</p>
+          <p class="heroTrust">{{ . }}</p>
         {{ end }}
       </div>
 
-      {{ if ne (printf "%v" (.Site.Params.showBadge | default true)) "false" }}
-        <div class="heroBadge" aria-hidden="true">
-          <div class="badgeRing"></div>
-          <div class="badgeText">
-            <div class="badgeTop">Made-to-order</div>
-            <div class="badgeMid">Marine</div>
-            <div class="badgeBot">Hardware</div>
-          </div>
+      {{/* Spec panel — hidden on mobile */}}
+      {{ with .Site.Params.leadTimes }}
+        <div class="heroCard" aria-hidden="true">
+          {{ range . }}
+            <div class="heroCardItem">
+              <div class="heroCardLabel">{{ .label }}</div>
+              <div class="heroCardValue">{{ .range }}</div>
+              <div class="heroCardDesc">{{ .note }}</div>
+            </div>
+          {{ end }}
         </div>
       {{ end }}
     </div>
   </header>
 
-  {{ with .Site.Params.offerings }}
-    <section class="section" id="offerings">
-      <div class="sectionHead">
-        <h2>What we make</h2>
-        <p>{{ $.Site.Params.offeringsIntro | default "Common builds and replacements." }}</p>
-      </div>
-      <div class="grid">
-        {{ range . }}
-          <div class="card">
-            <h3>{{ .title }}</h3>
-            <p>{{ .body }}</p>
-          </div>
-        {{ end }}
-      </div>
-    </section>
-  {{ end }}
-
-  {{ with .Site.Params.process }}
-    <section class="section" id="how">
-      <div class="sectionHead">
-        <h2>How quoting works</h2>
-        <p>{{ $.Site.Params.processIntro | default "A simple, fast loop." }}</p>
-      </div>
-      <ol class="steps">
-        {{ range . }}
-          <li class="step">
-            <div class="stepNum">{{ .n }}</div>
-            <div>
-              <h3>{{ .title }}</h3>
-              <p>{{ .body }}</p>
-            </div>
-          </li>
-        {{ end }}
-      </ol>
-    </section>
-  {{ end }}
-
-  {{ with .Site.Params.photos }}
-    <section class="section" id="photos">
-      <div class="sectionHead">
-        <h2>{{ $.Site.Params.photosTitle | default "On the water" }}</h2>
-        <p>{{ $.Site.Params.photosIntro | default "A few frames that match the work." }}</p>
-      </div>
-      <div class="photoStrip">
-        {{ range . }}
-          <figure class="photo">
-            <img src="{{ .src | relURL }}" alt="{{ .alt }}" loading="lazy" />
-            {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
-          </figure>
-        {{ end }}
-      </div>
-    </section>
-  {{ end }}
-
-  {{ with .Site.Params.materials }}
-    <section class="section" id="materials">
-      <div class="sectionHead">
-        <h2>Premium materials</h2>
-        <p>{{ $.Site.Params.materialsIntro | default "Built for salt, sun, and load." }}</p>
-      </div>
-      <div class="twoCol">
-        <div class="panel">
-          <h3>{{ $.Site.Params.materialsTitle | default "Common options" }}</h3>
-          <ul class="list">
-            {{ range . }}
-              <li><strong>{{ .name }}</strong> — {{ .note }}</li>
-            {{ end }}
-          </ul>
-        </div>
-        <div class="panel">
-          <h3>{{ $.Site.Params.finishTitle | default "Finishes + details" }}</h3>
-          <ul class="list">
-            {{ range $.Site.Params.finishes }}
-              <li><strong>{{ .name }}</strong> — {{ .note }}</li>
-            {{ end }}
-          </ul>
-        </div>
-      </div>
-    </section>
-  {{ end }}
-
+  {{/* ── STATS STRIP ──────────────────────────────── */}}
   {{ with .Site.Params.leadTimes }}
-    <section class="section" id="lead">
-      <div class="sectionHead">
-        <h2>Typical lead times</h2>
-        <p>{{ $.Site.Params.leadTimesIntro | default "We’ll confirm after we see your part." }}</p>
-      </div>
-      <div class="three">
+    <div class="statsStrip">
+      <div class="statsRow">
         {{ range . }}
-          <div class="stat">
-            <div class="statBig">{{ .range }}</div>
-            <div class="statLabel">{{ .label }}</div>
-            <div class="statNote">{{ .note }}</div>
+          <div class="statItem">
+            <div class="num">{{ .range }}</div>
+            <div class="lbl">{{ .label }}</div>
           </div>
         {{ end }}
-      </div>
-    </section>
-  {{ end }}
-
-  {{ with .Site.Params.faq }}
-    <section class="section" id="faq">
-      <div class="sectionHead">
-        <h2>FAQ</h2>
-        <p>{{ $.Site.Params.faqIntro | default "Quick answers to common questions." }}</p>
-      </div>
-      <div class="faq">
-        {{ range . }}
-          <details class="qa">
-            <summary>{{ .q }}</summary>
-            <p>{{ .a }}</p>
-          </details>
-        {{ end }}
-      </div>
-    </section>
-  {{ end }}
-
-  <section class="section" id="contact">
-    <div class="sectionHead">
-      <h2>Request a quote</h2>
-      <p>{{ .Site.Params.contactIntro | default "Send the details below and we’ll reply with options, pricing, and lead time." }}</p>
-    </div>
-
-    {{ if $quoteUrl }}
-      <div class="callout">
-        <div>
-          <div class="calloutTitle">Prefer a guided quote?</div>
-          <div class="calloutText">Use our quote form for the fastest turnaround.</div>
+        <div class="statItem">
+          <div class="num">1+</div>
+          <div class="lbl">One-offs welcome</div>
         </div>
-        <a class="btn btnPrimary" href="{{ $quoteUrl }}">Open quote form</a>
       </div>
-    {{ end }}
+    </div>
+  {{ end }}
 
-    <form class="form" name="quote" method="POST" data-netlify="true" enctype="multipart/form-data">
-      <input type="hidden" name="form-name" value="quote" />
-
-      <div class="formGrid">
-        <label>
-          <span>Name</span>
-          <input name="name" autocomplete="name" />
-        </label>
-        <label>
-          <span>Email *</span>
-          <input name="email" type="email" autocomplete="email" required />
-        </label>
-        <label>
-          <span>Phone</span>
-          <input name="phone" autocomplete="tel" />
-        </label>
-        <label>
-          <span>Boat make/model</span>
-          <input name="boat" placeholder="e.g., Beneteau 38" />
-        </label>
-
-        <label class="span2">
-          <span>Part description *</span>
-          <textarea name="details" required placeholder="What is it, where does it mount, what failed, and what interfaces must match? Include material preferences if you have them."></textarea>
-        </label>
-
-        <label>
-          <span>Quantity</span>
-          <input name="quantity" type="number" min="1" placeholder="1" />
-        </label>
-        <label>
-          <span>Priority</span>
-          <select name="priority">
-            <option>Standard</option>
-            <option>Rush</option>
-          </select>
-        </label>
-
-        <label class="span2">
-          <span>Files (optional)</span>
-          <input name="files" type="file" multiple />
-          <small>Photos, sketches, DXF/STL/STEP, or screenshots of where it mounts.</small>
-        </label>
+  {{/* ── CAPABILITIES ─────────────────────────────── */}}
+  {{ with .Site.Params.offerings }}
+    <section class="sectionBlock" id="offerings">
+      <div class="container">
+        <div class="sectionLabel">Capabilities</div>
+        <h2 class="sectionTitle">What we make</h2>
+        <p class="sectionLead">{{ $.Site.Params.offeringsIntro | default "Common builds and replacements, made to order." }}</p>
+        <div class="cardGrid">
+          {{ range $i, $o := . }}
+            <div class="capCard">
+              <div class="capNum">0{{ add $i 1 }}</div>
+              <h3>{{ $o.title }}</h3>
+              <p>{{ $o.body }}</p>
+            </div>
+          {{ end }}
+        </div>
       </div>
+    </section>
+  {{ end }}
 
-      <div class="formActions">
-        <button class="btn btnPrimary" type="submit">Send request</button>
-        <a class="btn btnSecondary" href="mailto:{{ $email }}?subject={{ (.Site.Params.primarySubject | default "Quote request") | urlquery }}">Email instead</a>
+  {{/* ── PROCESS ──────────────────────────────────── */}}
+  {{ with .Site.Params.process }}
+    <section class="sectionBlock sectionBlock--stripe" id="how">
+      <div class="container">
+        <div class="sectionLabel">Process</div>
+        <h2 class="sectionTitle">How quoting works</h2>
+        <p class="sectionLead">{{ $.Site.Params.processIntro | default "A simple, fast loop — no portals, no nonsense." }}</p>
+        <div class="processSteps">
+          {{ range . }}
+            <div class="processStep">
+              <div class="stepNum">{{ .n }}</div>
+              <div class="stepBody">
+                <h3>{{ .title }}</h3>
+                <p>{{ .body }}</p>
+              </div>
+            </div>
+          {{ end }}
+        </div>
       </div>
+    </section>
+  {{ end }}
 
-      <p class="formFine">We usually respond within 24–72 hours. For urgent work, include “RUSH” in the subject.</p>
-    </form>
+  {{/* ── PHOTOS ───────────────────────────────────── */}}
+  {{ with .Site.Params.photos }}
+    <section class="sectionBlock" id="photos">
+      <div class="container">
+        <div class="sectionLabel">{{ $.Site.Params.photosTitle | default "On the Water" }}</div>
+        <h2 class="sectionTitle">{{ $.Site.Params.photosTitle | default "On the water" }}</h2>
+        <p class="sectionLead">{{ $.Site.Params.photosIntro | default "A few frames that match the work." }}</p>
+        <div class="photoGrid">
+          {{ range . }}
+            <figure class="photoCard">
+              <img src="{{ .src | relURL }}" alt="{{ .alt }}" loading="lazy" />
+              {{ with .caption }}<figcaption class="photoCap">{{ . }}</figcaption>{{ end }}
+            </figure>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+  {{/* ── MATERIALS ────────────────────────────────── */}}
+  {{ with .Site.Params.materials }}
+    <section class="sectionBlock sectionBlock--stripe" id="materials">
+      <div class="container">
+        <div class="sectionLabel">Specifications</div>
+        <h2 class="sectionTitle">Premium materials</h2>
+        <p class="sectionLead">{{ $.Site.Params.materialsIntro | default "Built for salt, sun, and load." }}</p>
+        <div class="twoCol">
+          <div class="matPanel">
+            <h3>{{ $.Site.Params.materialsTitle | default "Alloys we use" }}</h3>
+            <ul class="matList">
+              {{ range . }}
+                <li>
+                  <strong>{{ .name }}</strong>
+                  <span>{{ .note }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="matPanel">
+            <h3>{{ $.Site.Params.finishTitle | default "Finishes + details" }}</h3>
+            <ul class="matList">
+              {{ range $.Site.Params.finishes }}
+                <li>
+                  <strong>{{ .name }}</strong>
+                  <span>{{ .note }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+  {{/* ── LEAD TIMES ───────────────────────────────── */}}
+  {{ with .Site.Params.leadTimes }}
+    <section class="sectionBlock" id="lead">
+      <div class="container">
+        <div class="sectionLabel">Turnaround</div>
+        <h2 class="sectionTitle">Typical lead times</h2>
+        <p class="sectionLead">{{ $.Site.Params.leadTimesIntro | default "We'll confirm after we see your part." }}</p>
+        <div class="statsGrid">
+          {{ range . }}
+            <div class="statCard">
+              <div class="statBig">{{ .range }}</div>
+              <div class="statLabel">{{ .label }}</div>
+              <div class="statNote">{{ .note }}</div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+  {{/* ── FAQ ──────────────────────────────────────── */}}
+  {{ with .Site.Params.faq }}
+    <section class="sectionBlock sectionBlock--stripe" id="faq">
+      <div class="container">
+        <div class="sectionLabel">FAQ</div>
+        <h2 class="sectionTitle">Common questions</h2>
+        <p class="sectionLead">{{ $.Site.Params.faqIntro | default "Quick answers. If you don't see yours, email us." }}</p>
+        <div class="faqList">
+          {{ range . }}
+            <details class="faqItem">
+              <summary>{{ .q }}</summary>
+              <p>{{ .a }}</p>
+            </details>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+  {{/* ── CONTACT / QUOTE ──────────────────────────── */}}
+  <section class="sectionBlock" id="contact">
+    <div class="container">
+      <div class="sectionLabel">Get a Quote</div>
+      <h2 class="sectionTitle">Request a quote</h2>
+      <p class="sectionLead">{{ .Site.Params.contactIntro | default "Send the details below and we'll reply with material options, pricing, and lead time." }}</p>
+
+      {{ if $quoteUrl }}
+        <div class="quoteCallout">
+          <div>
+            <div class="calloutTitle">Prefer a guided quote form?</div>
+            <div class="calloutText">Fastest turnaround — include photos and measurements for a same-day response.</div>
+          </div>
+          <a class="btn btnPrimary" href="{{ $quoteUrl }}">Open quote form →</a>
+        </div>
+      {{ end }}
+
+      <form name="quote" method="POST" data-netlify="true" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="quote" />
+
+        <div class="formGrid">
+          <div class="formField">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" autocomplete="name" />
+          </div>
+          <div class="formField">
+            <label for="f-email">Email *</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="formField">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" autocomplete="tel" />
+          </div>
+          <div class="formField">
+            <label for="f-boat">Boat make / model</label>
+            <input id="f-boat" name="boat" placeholder="e.g., Beneteau 38" />
+          </div>
+
+          <div class="formField span2">
+            <label for="f-details">Part description *</label>
+            <textarea id="f-details" name="details" required placeholder="What is it, where does it mount, what failed, and what interfaces must match? Include material preferences if you have them."></textarea>
+          </div>
+
+          <div class="formField">
+            <label for="f-qty">Quantity</label>
+            <input id="f-qty" name="quantity" type="number" min="1" placeholder="1" />
+          </div>
+          <div class="formField">
+            <label for="f-priority">Priority</label>
+            <select id="f-priority" name="priority">
+              <option>Standard</option>
+              <option>Rush</option>
+            </select>
+          </div>
+
+          <div class="formField span2">
+            <label for="f-files">Files (optional)</label>
+            <input id="f-files" name="files" type="file" multiple />
+            <small>Photos, sketches, DXF / STL / STEP, or screenshots of where it mounts.</small>
+          </div>
+        </div>
+
+        <div class="formActions">
+          <button class="btn btnPrimary" type="submit">Send request</button>
+          <a class="btn btnSecondary" href="mailto:{{ $email }}?subject={{ (.Site.Params.primarySubject | default "Quote request") | urlquery }}">Email instead</a>
+        </div>
+
+        <p class="formFine">We usually respond within 24–72 hours. For urgent work, include "RUSH" in your message.</p>
+      </form>
+
+      {{ with .Site.Params.disclaimer }}
+        <div class="disclaimer">{{ . }}</div>
+      {{ end }}
+    </div>
   </section>
 
-  {{ with .Site.Params.disclaimer }}
-    <section class="disclaimer">
-      <p>{{ . }}</p>
-    </section>
-  {{ end }}
 {{ end }}
